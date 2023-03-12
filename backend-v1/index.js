@@ -46,9 +46,10 @@ app.get("/", async (req, res) => {
 
 app.post("/api/create", async (req, res) => {
     const data = req.body;
-    // const newUser = await db.collection('users').add({ data });
-    const newUser = await setDoc(doc(db, 'users', data.id), data )
-    console.log("User added with ID ", newUser.id);
+    console.log("User added with ID ", data.id);
+    delete data.id
+    const newUser = await usersRef.add({ data });
+    // const newUser = await setDoc(doc(db, 'users', data.id), data )
     res.send({ msg: "User added"});
 })
 
