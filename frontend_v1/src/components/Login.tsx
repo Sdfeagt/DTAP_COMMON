@@ -4,8 +4,11 @@ import userIco from "../../public/userIco.svg";
 import lockIco from "../../public/lockIco.svg";
 import Image from "next/image";
 import Link from "next/link";
+import {useRouter} from "next/router";
 
 const Login = () => {
+  const router = useRouter()
+
   const handleSubmit = async (event: any) => {
     // Stop the form from submitting and refreshing the page.
     event.preventDefault();
@@ -20,6 +23,7 @@ const Login = () => {
     console.log(
       `Here do the Firebase validation later on. If it is correct, then router.push to the dashboard`
     );
+      router.push("/dashboard")
   };
   return (
     <form onSubmit={handleSubmit} className="flex flex-col space-y-7">

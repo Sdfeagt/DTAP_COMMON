@@ -3,9 +3,6 @@ import Login from "./Login";
 
 import Register from "./Register";
 
-interface inLogin {
-  inLoginValue: Boolean;
-}
 const LoginForm = () => {
   const [inLog, setInLog] = useState(true);
 

@@ -5,14 +5,7 @@ import userIco from "../../public/userIco.svg";
 import lockIco from "../../public/lockIco.svg";
 import robotIco from "../../public/robotIco.svg";
 
-interface inLogin {
-  inLoginValue: Boolean;
-}
-
 const Register = () => {
-  const temp: inLogin = {
-    inLoginValue: false,
-  };
   const handleSubmit = async (event: any) => {
     // Stop the form from submitting and refreshing the page.
     event.preventDefault();
