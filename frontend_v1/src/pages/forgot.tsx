@@ -3,7 +3,7 @@ import HeaderSimple from '@/components/HeaderSimple'
 import Head from 'next/head'
 import React from 'react'
 
-const forgot = () => {
+const Forgot = () => {
   return (
     <div>
     <Head>
@@ -22,4 +22,4 @@ const forgot = () => {
   )
 }
 
-export default forgot
+export default Forgot

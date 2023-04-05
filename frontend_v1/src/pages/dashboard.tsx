@@ -1,13 +1,18 @@
+import ChartDash from '@/components/ChartDash'
 import Header from '@/components/Header'
 import Head from 'next/head'
-import React from 'react'
+import React, { useState } from 'react'
+
 interface dashboardInfo {
     info: string,
     button: boolean,
   }
 
-const dashboard = () => {
+const Dashboard = () => {
+  
     const dashobj = {info: "Dashboard", button: false}
+    const [showStatus, setShowStatus] = useState(false)
+
   return (
     <div>    
         <Head>
@@ -17,8 +22,9 @@ const dashboard = () => {
     <link rel="icon" href="/favicon.ico" />
   </Head>
   <Header {...dashobj} />
+  <ChartDash/>
   </div>
   )
 }
 
-export default dashboard
+export default Dashboard
