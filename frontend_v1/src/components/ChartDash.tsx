@@ -25,10 +25,10 @@ const ChartDash = () => {
   };
 
   return (
-    <div className='bg-surface rounded-2xl shadow-md border-2 border-primary'>
+    <div>
       <Bar
         data={data}
-        width={400}
+        width={600}
         height={300}
         options={{
           maintainAspectRatio: false,
