@@ -3,8 +3,6 @@ import LoginAndRegister from "@/components/LoginAndRegister";
 import Head from "next/head";
 
 export default function Home() {
-  //TODO: if user tries to get to this page after logging in, without logging out, redirect to the dashboard
-  //TODO: forgot password form
   return (
     <div>
       <Head>
