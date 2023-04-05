@@ -23,27 +23,27 @@ const Login = () => {
   };
   return (
     <form onSubmit={handleSubmit} className="flex flex-col space-y-7">
-      <div className="flex flex-row border rounded-2xl">
-        <Image src={userIco} alt="userIco" className="ml-2" />
+      <div className="flex flex-row-reverse border rounded-2xl">
         <input
           type="email"
           id="first"
           name="first"
           required
           placeholder="Email"
-          className="bg-background mx-2 my-2 outline-none"
+          className="bg-background mx-2 my-2 outline-none peer"
         />
+        <Image src={userIco} alt="userIco" className="ml-2 peer-focus:scale-75 transform transition duration-y" />
       </div>
-      <div className="flex flex-row border rounded-2xl">
-        <Image src={lockIco} alt="lockIco" className="ml-2" />
+      <div className="flex flex-row-reverse border rounded-2xl">
         <input
           type="password"
           id="last"
           name="last"
           required
           placeholder="Password"
-          className="bg-background ml-2 my-2 outline-none"
+          className="bg-background mx-2 my-2 outline-none peer"
         />
+        <Image src={lockIco} alt="lockIco" className="ml-2 peer-focus:scale-75 transform transition duration-y" />
       </div>
       <button
         type="submit"
@@ -52,7 +52,7 @@ const Login = () => {
         <p className="my-2">Login</p>
       </button>
       <div className="flex flex-col justify-end group relative">
-          <Link href="/" className="flex justify-end underline">Forgot your password?</Link>
+          <Link href="/forgot" className="flex justify-end underline">Forgot your password?</Link>
         </div>
     </form>
   );

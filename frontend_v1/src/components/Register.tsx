@@ -26,50 +26,51 @@ const Register = () => {
   };
   return (
     <div>
-      <form onSubmit={handleSubmit} className="flex flex-col space-y-7">
-        <div className="flex flex-row border rounded-2xl">
-          <Image src={userIco} alt="userIco" className="ml-2" />
+      <form onSubmit={handleSubmit} className="flex flex-col space-y-7 ">
+        <div className="flex flex-row-reverse border rounded-2xl">
           <input
             type="email"
-            id="first"
+            id="email"
             name="first"
             required
             placeholder="Email"
-            className="bg-background mx-2 my-2 outline-none"
+            className="bg-background mx-2 my-2 outline-none peer"
           />
+          <Image src={userIco} alt="userIco" className="ml-2 peer-focus:scale-90" />
         </div>
-        <div className="flex flex-row border rounded-2xl">
-          <Image src={lockIco} alt="lockIco" className="ml-2" />
+        <div className="flex flex-row-reverse border rounded-2xl">
           <input
             type="password"
-            id="last"
-            name="last"
+            id="password"
+            name="password"
             required
             placeholder="Password"
-            className="bg-background ml-2 my-2 outline-none"
+            className="bg-background mx-2 my-2 outline-none peer"
           />
+          <Image src={lockIco} alt="lockIco" className="ml-2 peer-focus:scale-75 transform transition duration-y" />
         </div>
-        <div className="flex flex-row border rounded-2xl">
-          <Image src={lockIco} alt="lockIco" className="ml-2" />
+        <div className="flex flex-row-reverse border rounded-2xl">
           <input
             type="password"
-            id="last"
-            name="last"
+            id="repeatpassword"
+            name="repeatpassword"
             required
             placeholder="Repeat Passsword"
-            className="bg-background ml-2 my-2 outline-none"
+            className="bg-background mx-2 my-2 outline-none peer"
           />
+          <Image src={lockIco} alt="lockIco" className="ml-2 peer-focus:scale-75 transform transition duration-y" />
         </div>
-        <div className="flex flex-row border rounded-2xl">
-          <Image src={robotIco} alt="lockIco" className="ml-2" />
+        
+        <div className="flex flex-row-reverse border rounded-2xl">
           <input
             type="text"
-            id="last"
-            name="last"
+            id="robotID"
+            name="robotID"
             required
             placeholder="Robot ID Number"
-            className="bg-background ml-2 my-2 outline-none"
+            className="bg-background mx-2 my-2 outline-none peer"
           />
+          <Image src={robotIco} alt="robotIco" className="ml-2 peer-focus:scale-75 transform transition duration-y" />
         </div>
         <button
           type="submit"

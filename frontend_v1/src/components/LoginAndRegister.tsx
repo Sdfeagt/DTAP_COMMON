@@ -1,7 +1,7 @@
 import React, { use, useEffect, useState } from "react";
 import Login from "./Login";
 
-import Register from "./register";
+import Register from "./Register";
 
 interface inLogin {
   inLoginValue: Boolean;

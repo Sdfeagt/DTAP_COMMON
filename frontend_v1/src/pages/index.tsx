@@ -1,6 +1,5 @@
 import HeaderSimple from "@/components/HeaderSimple";
 import LoginAndRegister from "@/components/LoginAndRegister";
-import Register from "@/components/register";
 import Head from "next/head";
 
 export default function Home() {
