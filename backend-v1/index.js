@@ -17,7 +17,6 @@ const firebaseApp = admin.initializeApp({
 // Initialise Express App
 const app = express();
 
-
 app.use(cors());
 app.use(express.json());
 
