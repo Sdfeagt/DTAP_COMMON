@@ -1,8 +1,6 @@
 import ChartAndStatus from '@/components/ChartAndStatus'
-import ChartDash from '@/components/ChartDash'
 import Header from '@/components/Header'
 import HeatMap from '@/components/HeatMap'
-import Status from '@/components/StatusDash'
 import Head from 'next/head'
 import React, { useState } from 'react'
 

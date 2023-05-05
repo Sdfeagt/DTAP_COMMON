@@ -29,7 +29,6 @@ const LoginForm = () => {
     setStyleChart("");
   };
 
-  console.log(inChart);
   return (
     <div className="py-1 px-4 bg-surface rounded-2xl shadow-md border-2 border-primary">
       <div className="flex flex-row space-x-4 text-xl">

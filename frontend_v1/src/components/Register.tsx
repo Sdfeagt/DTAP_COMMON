@@ -53,7 +53,7 @@ const Register = () => {
           />
           <Image src={lockIco} alt="lockIco" className="ml-2 peer-focus:scale-75 transform transition duration-y" />
         </div>
-        
+
         <div className="flex flex-row-reverse border rounded-2xl">
           <input
             type="text"
