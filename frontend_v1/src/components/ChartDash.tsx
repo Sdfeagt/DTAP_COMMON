@@ -3,7 +3,6 @@ import { Chart as ChartJS, registerables } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
 ChartJS.register(...registerables);
-
 const ChartDash = () => {
   const data = {
     labels: ['Device #1', 'Device #2', 'Device #3', 'Device #4', 'Device #5'],
