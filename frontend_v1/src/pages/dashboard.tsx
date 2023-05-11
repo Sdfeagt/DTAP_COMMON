@@ -2,7 +2,7 @@ import ChartAndStatus from '@/components/ChartAndStatus'
 import Header from '@/components/Header'
 import HeatMap from '@/components/HeatMap'
 import Head from 'next/head'
-import React, { useState } from 'react'
+import React from 'react'
 
 const Dashboard = () => {
 
@@ -18,7 +18,7 @@ const Dashboard = () => {
       </Head>
       <Header {...dashobj} />
       <div className='items-center'>
-        <div className='flex justify-center items-center my-10'>
+        <div className='flex justify-around items-center my-10'>
           <ChartAndStatus />
           <HeatMap />
         </div>
