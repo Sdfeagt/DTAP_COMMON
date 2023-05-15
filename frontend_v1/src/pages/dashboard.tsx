@@ -2,6 +2,7 @@ import ChartAndStatus from '@/components/ChartAndStatus'
 import Header from '@/components/Header'
 import HeatMap from '@/components/HeatMap'
 import Insight from '@/components/Insight'
+import Menu from '@/components/Menu'
 import Head from 'next/head'
 import React from 'react'
 
@@ -18,24 +19,28 @@ const Dashboard = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header {...dashobj} />
-      <div className="items-center">
-        <div className="flex flex-col">
-          <div className="flex justify-around items-center my-10">
-            <ChartAndStatus />
-            <HeatMap />
-          </div>
-          <div className="my-10">
-            <div className="flex justify-around">
-              <Insight title={"Insight"} graphType={"line"} textLong={"The average connectionquality has increased by 12% over the last 2 weeks! "} data={[1, 2, 3, 4, 5]} />
-              <Insight title={"Insight"} graphType={"circle"} textLong={"80% of robots are fully operational!"} data={[1, 2, 3, 4, 5]} />
-              <Insight title={"Insight"} graphType={"ERR"} textLong={"Lorem ipsum"} data={[1, 2, 3, 4, 5]} />
-
+      <div className="flex">
+        <div className='h-screen'> <Menu onPage={"dash"} /></div>
+        <div className="flex flex-col flex-grow">
+          <div className="items-center">
+            <div className="flex justify-around items-center my-10">
+              <ChartAndStatus />
+              <HeatMap />
+            </div>
+            <div className="my-10">
+              <div className="flex justify-around">
+                <Insight title={"Insight"} graphType={"line"} textLong={"The average connection quality has increased by 12% over the last 2 months! "} data={[1, 2, 3, 4, 5]} />
+                <Insight title={"Insight"} graphType={"circle"} textLong={"80% of robots are fully operational!"} data={[1, 2, 3, 4, 5]} />
+                <Insight title={"Insight"} graphType={"ERR"} textLong={"Lorem ipsum"} data={[1, 2, 3, 4, 5]} />
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   );
+
+
 
 }
 

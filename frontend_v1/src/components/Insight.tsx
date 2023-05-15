@@ -25,7 +25,7 @@ const Insight = ({ title, graphType, textLong, data }: insight_props) => {
                             'rgba(182, 96, 18)',
                             'rgb(240, 9, 9)'
                         ],
-                        borderWidth: 1,
+                        borderWidth: 2,
                     },
                 ],
             };
@@ -72,16 +72,18 @@ const Insight = ({ title, graphType, textLong, data }: insight_props) => {
         }
     }
     return (
-        <div className="py-1 px-4 bg-surface rounded-2xl shadow-md border-2 border-primary">
-            <div className="h-[300px] w-[250px] flex flex-col">
-                <div className="flex flex-col justify-between flex-grow items-center">
-                    <div className="mb-2">{title}</div>
+        <div className="py-1 px-4 bg-surface rounded-2xl shadow-md border-2 border-primary" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div className=" flex flex-col" style={{ flexGrow: 1 }}>
+                <div className="flex flex-col justify-between items-center" style={{ flexGrow: 1 }}>
+                    <div className="mb-2 text-lg">{title}</div>
                     <Graph />
-                    <div className="flex justify-center text-xs">{textLong}</div>
+                    <div className="m-2 flex justify-center text-sm lg:text-base">{textLong}</div>
                 </div>
             </div>
         </div>
     );
+
+
 
 
 }

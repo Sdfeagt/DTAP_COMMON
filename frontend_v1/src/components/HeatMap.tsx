@@ -81,7 +81,6 @@ const HeatMap = () => {
   //const titles = headings.map((heading) => <th key={heading}>{heading}</th>);
 
   const cols = (cells: Cell[]): JSX.Element[] => {
-    console.log(cells.map((cell) => Math.round(cell.scales[0] / 10) * 10));
     return cells.map((cell, i) => (
       <div key={i} className={`flex items-center justify-center bg-primary`}
         style={{ opacity: `${cell.scales[0] / 100}` }}>
@@ -95,18 +94,21 @@ const HeatMap = () => {
   };
 
   return (
-    <div className="py-1 px-4 bg-surface rounded-2xl shadow-md border-2 border-primary">
+    <div className="px-4 pb-4 bg-surface rounded-2xl shadow-md border-2 border-primary">
       <div className="flex flex-row space-x-4 text-xl">
         Heat map
       </div>
-      {data.map((row: Row) => (
-        <div key={row.label} className="flex">
-          <div className="text-xs px-2">{row.label}</div>
-          {cols(row.cells)}
-        </div>
-      ))}
+      <div className="pt-4">
+        {data.map((row: Row) => (
+          <div key={row.label} className="flex flex-wrap">
+            <div className="text-xs px-2 w-1/5 md:w-auto">{row.label}</div>
+            {cols(row.cells)}
+          </div>
+        ))}
+      </div>
     </div>
   );
+
 
 
 };
