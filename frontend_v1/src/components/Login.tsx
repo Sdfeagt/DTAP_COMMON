@@ -4,7 +4,7 @@ import userIco from "../../public/userIco.svg";
 import lockIco from "../../public/lockIco.svg";
 import Image from "next/image";
 import Link from "next/link";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 
 const Login = () => {
   const router = useRouter()
@@ -20,10 +20,7 @@ const Login = () => {
     console.log(
       `Here do the Firebase validation later on. If it is correct, then router.push to the dashboard`
     );
-    console.log(
-      `Here do the Firebase validation later on. If it is correct, then router.push to the dashboard`
-    );
-      router.push("/dashboard")
+    router.push("/dashboard")
   };
   return (
     <form onSubmit={handleSubmit} className="flex flex-col space-y-7">
@@ -56,8 +53,8 @@ const Login = () => {
         <p className="my-2">Login</p>
       </button>
       <div className="flex flex-col justify-end group relative">
-          <Link href="/forgot" className="flex justify-end underline">Forgot your password?</Link>
-        </div>
+        <Link href="/forgot" className="flex justify-end underline">Forgot your password?</Link>
+      </div>
     </form>
   );
 };

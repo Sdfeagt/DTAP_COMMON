@@ -20,7 +20,7 @@ const Dashboard = () => {
       </Head>
       <Header {...dashobj} />
       <div className="flex">
-        <div className='h-screen'> <Menu onPage={"dash"} /></div>
+        <div className='h-screen bg-surface'> <Menu onPage={"dash"} /></div>
         <div className="flex flex-col flex-grow">
           <div className="items-center">
             <div className="flex justify-around items-center my-10">
