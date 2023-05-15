@@ -7,7 +7,7 @@ type menu_props = {
 
 const Menu = ({ onPage }: menu_props) => {
     return (
-        <div>Menu</div>
+        <div className=''>Menu</div>
     )
 }
 
