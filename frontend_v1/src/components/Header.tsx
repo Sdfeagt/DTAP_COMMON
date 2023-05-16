@@ -8,7 +8,7 @@ interface dashboardInfo {
 const Header = (props: dashboardInfo) => {
   const router = useRouter()
   const logout = () => {
-    //later on logout the user here
+    //later logout the user here
     router.push("/")
   }
   return (
