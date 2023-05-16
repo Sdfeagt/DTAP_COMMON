@@ -8,7 +8,7 @@ import React from 'react'
 
 const Dashboard = () => {
 
-  const dashobj = { info: "Dashboard", button: false }
+  const dashobj = { info: "Dashboard" }
   return (
     <div className=''>
       <Head>
@@ -21,9 +21,7 @@ const Dashboard = () => {
         <Header {...dashobj} />
       </div>
       <div className="flex ml-10">
-        <div className="fixed top-0 left-0 h-screen mt-32 bg-surface border-r border-white">
-          <Menu onPage={"home"} />
-        </div>
+        <Menu onPage={"home"} />
         <div className="flex flex-col flex-grow mt-24">
           <div className="">
             <div className="flex justify-around items-center my-10">
@@ -40,7 +38,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 
 

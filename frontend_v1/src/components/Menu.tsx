@@ -20,8 +20,6 @@ const Menu = ({ onPage }: menu_props) => {
 
     const [cssMenu, setCss] = useState(0)
 
-    //TODO: Fix fill-primary thingy
-    //bg-primary rounded-full m-2
     useEffect(() => {
         if (onPage === "home") {
             setCss(1)
@@ -37,19 +35,22 @@ const Menu = ({ onPage }: menu_props) => {
         }
     }, [onPage])
     return (
-        <div className=''>
-            {cssMenu === 1 ? (<div>
-                <div className='bg-primary rounded-full m-2'><Image src={Home} alt="home" onClick={() => { router.push("/dashboard") }} className='cursor-pointer' /></div>
-                <div className=' m-2'><Image src={Stats_prim} alt="Stats" onClick={() => { router.push("/stats") }} className='cursor-pointer' /></div>
-                <div className='m-2'><Image src={Settings_prim} alt="Settings" onClick={() => { router.push("/settings") }} className='cursor-pointer' /></div></div>) : cssMenu === 2 ? (<div>
+        <div className='fixed top-0 left-0 h-screen bg-surface border-r border-white  pt-4'>
+            {cssMenu === 1 ? (<div className='h-full flex flex-col justify-between'>
+                <div className='pt-28'>
+                    <div className=' bg-primary rounded-full m-2'><Image src={Home} alt="home" onClick={() => { router.push("/dashboard") }} className='cursor-pointer' /></div>
+                    < div className=' m-2' > <Image src={Stats_prim} alt="Stats" onClick={() => { router.push("/stats") }} className='cursor-pointer' /></div >
+                </div>
+                <div className=' m-2 '><Image src={Settings_prim} alt="Settings" onClick={() => { router.push("/settings") }} className='cursor-pointer' /></div></div >) : cssMenu === 2 ? (<div>
                     <div className='m-2'><Image src={Home_prim} alt="home" onClick={() => { router.push("/dashboard") }} className='cursor-pointer' /></div>
                     <div className='bg-primary rounded-full m-2'><Image src={Stats} alt="Stats" onClick={() => { router.push("/stats") }} className='cursor-pointer' /></div>
                     <div className='m-2'><Image src={Settings_prim} alt="Settings" onClick={() => { router.push("/settings") }} className='cursor-pointer' /></div></div>) : (<div>
                         <div className=' m-2'><Image src={Home_prim} alt="home" onClick={() => { router.push("/dashboard") }} className='cursor-pointer' /></div>
                         <div className=' m-2'><Image src={Stats_prim} alt="Stats" onClick={() => { router.push("/stats") }} className='cursor-pointer' /></div>
-                        <div className='m-2 bg-primary rounded-full'><Image src={Settings} alt="Settings" onClick={() => { router.push("/settings") }} className='cursor-pointer' /></div></div>)}
+                        <div className='m-2 bg-primary rounded-full'><Image src={Settings} alt="Settings" onClick={() => { router.push("/settings") }} className='cursor-pointer' /></div></div>)
+            }
 
-        </div>
+        </div >
     )
 }
 
