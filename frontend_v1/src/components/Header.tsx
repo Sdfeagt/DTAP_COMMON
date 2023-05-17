@@ -2,14 +2,23 @@ import React from "react";
 import Logo from "../../public/Logo.svg";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { signOut } from "firebase/auth";
+import { auth } from "@/database/firebaseDB";
+import { useAuth, } from "../../context/AuthContext";
 interface dashboardInfo {
   info: string,
 }
 const Header = ({ info }: dashboardInfo) => {
   const router = useRouter()
-  const logout = () => {
-    //later logout the user here
-    router.push("/")
+  const { user, logOut } = useAuth();
+
+  const logout = async () => {
+    try {
+      await logOut();
+      router.push("/");
+    } catch (error: any) {
+      console.log(error.message);
+    }
   }
   return (
     <div className="flex justify-between border-b border-white">
@@ -21,3 +30,7 @@ const Header = ({ info }: dashboardInfo) => {
 }
 
 export default Header
+
+function setUser(arg0: { email: null; uid: null; }) {
+  throw new Error("Function not implemented.");
+}
