@@ -1,21 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../database/firebaseDB";
 
 import userIco from "../../public/userIco.svg";
 import lockIco from "../../public/lockIco.svg";
 import robotIco from "../../public/robotIco.svg";
+import { useRouter } from "next/router";
 
 const Register = () => {
-  const handleSubmit = async (event: any) => {
-    // Stop the form from submitting and refreshing the page.
-    event.preventDefault();
-    var formData = new FormData(event.target);
-    const form_values = Object.fromEntries(formData);
-    console.log("form values", form_values);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('')
+  const [reppassword, setRepPassword] = useState('')
+  const [ID, setID] = useState('')
+  const router = useRouter()
 
-    console.log(
-      `Here do the Firebase validation later on. If it is correct, then router.push to the dashboard`
-    );
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+    if (password == reppassword) {
+      //TODO: check if the ID number exists in the DB
+      //TODO: also POST the new user to the "users" collections
+      try {
+        await signUp(email, password);
+        router.push("/dashboard");
+      } catch (error: any) {
+        console.log(error.message);
+      }
+    }
+  };
+
+  const signUp = (email: string, password: string) => {
+    return createUserWithEmailAndPassword(auth, email, password);
   };
   return (
     <div>
@@ -28,6 +43,7 @@ const Register = () => {
             required
             placeholder="Email"
             className="bg-background mx-2 my-2 outline-none peer"
+            onChange={(e) => setEmail(e.target.value)}
           />
           <Image src={userIco} alt="userIco" className="ml-2 peer-focus:scale-90" />
         </div>
@@ -39,6 +55,7 @@ const Register = () => {
             required
             placeholder="Password"
             className="bg-background mx-2 my-2 outline-none peer"
+            onChange={(e) => setPassword(e.target.value)}
           />
           <Image src={lockIco} alt="lockIco" className="ml-2 peer-focus:scale-75 transform transition duration-y" />
         </div>
@@ -50,10 +67,11 @@ const Register = () => {
             required
             placeholder="Repeat Passsword"
             className="bg-background mx-2 my-2 outline-none peer"
+            onChange={(e) => setRepPassword(e.target.value)}
           />
           <Image src={lockIco} alt="lockIco" className="ml-2 peer-focus:scale-75 transform transition duration-y" />
         </div>
-        
+
         <div className="flex flex-row-reverse border rounded-2xl">
           <input
             type="text"
@@ -62,6 +80,7 @@ const Register = () => {
             required
             placeholder="Robot ID Number"
             className="bg-background mx-2 my-2 outline-none peer"
+            onChange={(e) => setID(e.target.value)}
           />
           <Image src={robotIco} alt="robotIco" className="ml-2 peer-focus:scale-75 transform transition duration-y" />
         </div>

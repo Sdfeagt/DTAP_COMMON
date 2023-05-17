@@ -2,6 +2,9 @@ import HeaderSimple from "@/components/HeaderSimple";
 import LoginAndRegister from "@/components/LoginAndRegister";
 import Head from "next/head";
 
+
+
+
 export default function Home() {
   return (
     <div>
@@ -20,3 +23,4 @@ export default function Home() {
     </div>
   );
 }
+
