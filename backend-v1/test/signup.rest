@@ -1,0 +1,9 @@
+POST http://localhost:5700/signup HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Kabir", 
+    "email": "bissessarkabir@gmail.com",
+    "password": "password123",
+    "device_id": "asdfghjkl"
+}
