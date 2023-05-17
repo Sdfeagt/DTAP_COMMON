@@ -8,7 +8,6 @@ import React from 'react'
 
 const Dashboard = () => {
 
-  const dashobj = { info: "Dashboard" }
   return (
     <div className=''>
       <Head>
@@ -18,7 +17,7 @@ const Dashboard = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="fixed top-0 left-0 right-0 z-10 bg-background">
-        <Header {...dashobj} />
+        <Header info='Dashboard' />
       </div>
       <div className="flex ml-10">
         <Menu onPage={"home"} />

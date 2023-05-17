@@ -4,7 +4,6 @@ import Head from 'next/head';
 import React from 'react'
 
 const settings = () => {
-    const dashobj = { info: "Settings" }
     return (
         <div className=''>
             <Head>
@@ -14,7 +13,7 @@ const settings = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div className="fixed top-0 left-0 right-0 z-10 bg-background">
-                <Header {...dashobj} />
+                <Header info='Settings' />
             </div>
             <div className="flex ml-10">
                 <Menu onPage={"Settings"} />

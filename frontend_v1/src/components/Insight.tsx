@@ -19,7 +19,7 @@ const Insight = ({ title, graphType, textLong, data }: insight_props) => {
                         data: [8, 2],
                         backgroundColor: [
                             'rgba(182, 96, 18, 0.2)',
-                            'rgb(240, 9, 9, 0.2)'
+                            'rgba(240, 9, 9, 0.2)'
                         ],
                         borderColor: [
                             'rgba(182, 96, 18)',
@@ -34,18 +34,6 @@ const Insight = ({ title, graphType, textLong, data }: insight_props) => {
             )
         }
         else if (graphType == "line") {
-            const options = {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'top' as const,
-                    },
-                    title: {
-                        display: true,
-                        text: 'Insight',
-                    },
-                },
-            };
             const labels = ['January', 'February', 'March', 'April']; // FIXME: to be substituted by real data
 
             const data = { // FIXME: to be substituted by real data
@@ -61,7 +49,7 @@ const Insight = ({ title, graphType, textLong, data }: insight_props) => {
             };
 
             return (
-                <Line options={options} data={data} />
+                <Line data={data} />
             )
 
         }
