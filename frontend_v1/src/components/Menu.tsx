@@ -58,9 +58,9 @@ const Menu = ({ onPage }: menu_props) => {
 
                 <div className='h-full flex flex-col justify-between'>
                     <div className='pt-28'>
-                        <div className='flex items-center m-2 cursor-pointer transition-all duration-300' onClick={() => { router.push("/dashboard") }} ><Image src={Home} alt="home" />
+                        <div className='flex items-center m-2 cursor-pointer transition-all duration-300' onClick={() => { router.push("/dashboard") }} ><Image src={Home_prim} alt="home" />
                             <div className='pr-24 pl-4 hidden group-hover:block'>Home</div></div>
-                        < div className='flex items-center bg-primary rounded-full m-2 group-hover:rounded-l-lg cursor-pointer transition-all duration-300' onClick={() => { router.push("/stats") }}> <Image src={Stats_prim} alt="Stats" />
+                        < div className='flex items-center bg-primary rounded-full m-2 group-hover:rounded-l-lg cursor-pointer transition-all duration-300' onClick={() => { router.push("/stats") }}> <Image src={Stats} alt="Stats" />
                             <div className='pr-24 pl-4 hidden group-hover:block'>Statistics</div></div >
                     </div>
                     <div className='flex items-center m-2 cursor-pointer transition-all duration-300' onClick={() => { router.push("/settings") }}><Image src={Settings_prim} alt="Settings" />
@@ -71,12 +71,12 @@ const Menu = ({ onPage }: menu_props) => {
 
                 <div className='h-full flex flex-col justify-between'>
                     <div className='pt-28'>
-                        <div className='flex items-center m-2 cursor-pointer transition-all duration-300' onClick={() => { router.push("/dashboard") }} ><Image src={Home} alt="home" />
+                        <div className='flex items-center m-2 cursor-pointer transition-all duration-300' onClick={() => { router.push("/dashboard") }} ><Image src={Home_prim} alt="home" />
                             <div className='pr-24 pl-4 hidden group-hover:block'>Home</div></div>
                         < div className='flex items-center m-2 cursor-pointer transition-all duration-300' onClick={() => { router.push("/stats") }}> <Image src={Stats_prim} alt="Stats" />
                             <div className='pr-24 pl-4 hidden group-hover:block'>Statistics</div></div >
                     </div>
-                    <div className='flex items-center bg-primary rounded-full m-2 group-hover:rounded-l-lg cursor-pointer transition-all duration-300' onClick={() => { router.push("/settings") }}><Image src={Settings_prim} alt="Settings" />
+                    <div className='flex items-center bg-primary rounded-full m-2 group-hover:rounded-l-lg cursor-pointer transition-all duration-300' onClick={() => { router.push("/settings") }}><Image src={Settings} alt="Settings" />
                         <div className='pr-24 pl-4 hidden group-hover:block'>Settings</div></div>
                 </div>
             )
