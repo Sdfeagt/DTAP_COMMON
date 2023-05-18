@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, getDevices, getIDs, getUsers } from "../database/firebaseDB";
+import { auth, getIDs } from "../database/firebaseDB";
 
 import userIco from "../../public/userIco.svg";
 import lockIco from "../../public/lockIco.svg";
