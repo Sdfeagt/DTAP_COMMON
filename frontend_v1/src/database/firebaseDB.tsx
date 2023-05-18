@@ -28,7 +28,14 @@ async function getUsers() {
     return usersList;
 }
 
+async function getIDs() {
+    const IDs = collection(db, 'devices_ID');
+    const IDSnapshot = await getDocs(IDs);
+    const IDList = IDSnapshot.docs.map(doc => doc.data());
+    return IDList;
+}
+
 const auth = getAuth();
 
 
-export { getDevices, getUsers, auth }
+export { getDevices, getUsers, auth, getIDs }
