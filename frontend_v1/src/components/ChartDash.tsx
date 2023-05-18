@@ -1,23 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Chart as ChartJS, registerables } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import { getDevices } from '@/database/firebaseDB';
 
 ChartJS.register(...registerables);
 const ChartDash = () => {
+  const [devices, setDevices] = useState<any[]>([{ name: "device_1", status: true, speed: 10, hardware_status: 1 }, { name: "device_2", status: true, speed: 25, hardware_status: 1 }])
+  useEffect(() => {
+    const getInfo = async () => {
+      try {
+        const data = await getDevices()
+        setDevices(data)
+      } catch (error: any) {
+        console.log(error.message);
+      }
+    }
+    const interval = setInterval(() => {
+      getInfo()
+    }, 1000)
+    return () => clearInterval(interval)
+  })
   const data = {
-    labels: ['Device #1', 'Device #2', 'Device #3', 'Device #4', 'Device #5'],
+    labels: devices.filter((device: any) => (device.name != "heatmap")).map((device: any) => (device.name)),
     datasets: [
       {
-        label: '# Connection quality',
-        data: [50, 120, 10, 25, 86, 17],
-        backgroundColor: [
-          'rgba(182, 96, 18)',
-          'rgba(182, 96, 18)',
-          'rgba(182, 96, 18)',
-          'rgba(182, 96, 18)',
-          'rgba(182, 96, 18)',
-          'rgba(182, 96, 18)',
-        ],
+        label: '# Connection speed',
+        data: devices.filter((device: any) => (device.name != "heatmap")).map((device: any) => (device.speed)),
+        backgroundColor: devices.filter((device: any) => (device.name != "heatmap")).map((device: any) => ('rgba(182, 96, 18)'))
       },
     ],
   };
