@@ -24,7 +24,7 @@ const HeatMap = () => {
 
   const values = Array.from({ length: 25 }, () =>
     Array.from({ length: 25 }, () => faker.number.int({ min: 0, max: 99 }))
-  ); // FIXME: this causes an error, but as it is just junk data, I'll ignore it
+  );
 
   const data: Row[] = labels.map((label, i) => {
     const cells: Cell[] = values[i].map((scale, j) => {

@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, Firestore } from 'firebase/firestore/lite';
+import { getFirestore, collection, getDocs, deleteDoc, doc, setDoc } from 'firebase/firestore/lite';
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
@@ -37,5 +37,14 @@ async function getIDs() {
 
 const auth = getAuth();
 
+async function deleteDocument(collection: string, document: string) {
+    await deleteDoc(doc(db, collection, document));
+}
 
-export { getDevices, getUsers, auth, getIDs }
+async function addDocument(collection: string, document: string) {
+    const docRef = doc(db, collection, document);
+    await setDoc(docRef, { merge: true }); //merger always set to true, in order to preserve the data
+}
+
+
+export { getDevices, getUsers, auth, getIDs, deleteDocument }

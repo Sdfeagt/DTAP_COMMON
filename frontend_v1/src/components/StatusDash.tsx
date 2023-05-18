@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react'
 
 import { getDevices } from '../database/firebaseDB'
+import { useAuth } from '../../context/AuthContext';
 
-interface data_interface {
-  name: string;
-  status: boolean;
-  speed: number;
-  hardware_status: number;
-}
 const StatusDash = () => {
-  const [devices, setDevices] = useState<any[]>([{ name: "device_1", status: true, speed: 10, hardware_status: 1 }, { name: "device_2", status: true, speed: 25, hardware_status: 1 }])
+  const [devices, setDevices] = useState<any[]>([{ name: "device_1", status: true, speed: 10, hardware_status: 1 }, { name: "device_2", status: true, speed: 25, hardware_status: 1 }]) // junk data here
+  const { user } = useAuth();
+
   useEffect(() => {
     const getInfo = async () => {
       try {
@@ -24,14 +21,7 @@ const StatusDash = () => {
     }, 1000)
     return () => clearInterval(interval)
   })
-  // const data: data_interface[] = [
-  //   { name: "device_1", status: true, speed: 10, hardware_status: 1 },
-  //   { name: "device_2", status: true, speed: 25, hardware_status: 1 },
-  //   { name: "device_3", status: true, speed: 60, hardware_status: -1 },
-  //   { name: "device_4", status: true, speed: 88, hardware_status: 1 },
-  //   { name: "device_5", status: true, speed: 100, hardware_status: 1 },
-  // ];
-  const data = devices.filter((device: any) => (device.name != "heatmap")).map((device: any) => (
+  const data = devices.filter((device: any) => (device.name != "heatmap")).filter((device) => (device.owner === user.email)).map((device: any) => (
     {
       name: device.name,
       status: device.status,

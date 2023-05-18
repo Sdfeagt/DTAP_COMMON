@@ -24,14 +24,15 @@ const Register = () => {
     setDiffPassword(false)
     event.preventDefault();
     if (password == reppassword) {
-      //TODO: POST the new user to the "users" collections
       try {
         setShowLoad(true)
         const ID_List = await getIDs()
         const ids = ID_List.map((user) => user.IDs)
         if (ids.includes(ID)) {
-          //TODO: remove the ID from the list
           await signUp(email, password);
+          //TODO: remove the ID from the list
+          //TODO: add the device to the collection
+          //TODO: POST the new user to the "users" collections
           router.push("/dashboard");
         }
       } catch (error: any) {
