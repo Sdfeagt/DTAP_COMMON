@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Chart as ChartJS, registerables } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import { getDevices } from '@/database/firebaseDB';
+import { useAuth } from '../../context/AuthContext';
 
 ChartJS.register(...registerables);
 const ChartDash = () => {
+  const { user } = useAuth();
+
   const [devices, setDevices] = useState<any[]>([{ name: "device_1", status: true, speed: 10, hardware_status: 1 }, { name: "device_2", status: true, speed: 25, hardware_status: 1 }])
   useEffect(() => {
     const getInfo = async () => {
@@ -21,7 +24,7 @@ const ChartDash = () => {
     return () => clearInterval(interval)
   })
   const data = {
-    labels: devices.filter((device: any) => (device.name != "heatmap")).map((device: any) => (device.name)),
+    labels: devices.filter((device: any) => (device.name != "heatmap" && device.owner === user.email)).map((device: any) => (device.name)),
     datasets: [
       {
         label: '# Connection speed',

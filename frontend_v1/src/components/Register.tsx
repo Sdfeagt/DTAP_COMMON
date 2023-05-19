@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, getIDs } from "../database/firebaseDB";
+import { auth, getIDs, deleteDocument, addDocument } from "../database/firebaseDB";
 
 import userIco from "../../public/userIco.svg";
 import lockIco from "../../public/lockIco.svg";
@@ -27,12 +27,12 @@ const Register = () => {
       try {
         setShowLoad(true)
         const ID_List = await getIDs()
-        const ids = ID_List.map((user) => user.IDs)
+        const ids = ID_List.map((id_obj) => id_obj.ID)
+        console.log(ids);
         if (ids.includes(ID)) {
           await signUp(email, password);
-          //TODO: remove the ID from the list
-          //TODO: add the device to the collection
-          //TODO: POST the new user to the "users" collections
+          await addDocument('metrics', ID, { hardware_status: true, name: ID, owner: email, rssi: 100, signal_strength: 100, speed: 100, status: true })
+          await deleteDocument('device_IDs', ID)
           router.push("/dashboard");
         }
       } catch (error: any) {

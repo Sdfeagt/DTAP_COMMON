@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, deleteDoc, doc, setDoc } from 'firebase/firestore/lite';
+import { getFirestore, collection, getDocs, deleteDoc, doc, setDoc, Firestore } from 'firebase/firestore/lite';
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
@@ -29,7 +29,7 @@ async function getUsers() {
 }
 
 async function getIDs() {
-    const IDs = collection(db, 'devices_ID');
+    const IDs = collection(db, 'device_IDs');
     const IDSnapshot = await getDocs(IDs);
     const IDList = IDSnapshot.docs.map(doc => doc.data());
     return IDList;
@@ -41,10 +41,12 @@ async function deleteDocument(collection: string, document: string) {
     await deleteDoc(doc(db, collection, document));
 }
 
-async function addDocument(collection: string, document: string) {
-    const docRef = doc(db, collection, document);
-    await setDoc(docRef, { merge: true }); //merger always set to true, in order to preserve the data
+async function addDocument(collection: string, ID: string, document: any) {
+    console.log(document);
+    const docRef = doc(db, collection, ID);
+    await setDoc(docRef, document);
 }
 
 
-export { getDevices, getUsers, auth, getIDs, deleteDocument }
+
+export { getDevices, getUsers, auth, getIDs, deleteDocument, addDocument }

@@ -33,7 +33,7 @@ const Dashboard = () => {
                 <div className="py-10 flex justify-around">
                   <Insight title={"Insight"} graphType={"circle"} textLong={"80% of robots are fully operational!"} data={[1, 2, 3, 4, 5]} />
                   <Insight title={"Insight"} graphType={"line"} textLong={"The average connection quality has increased by 12% over the last 2 months! "} data={[1, 2, 3, 4, 5]} />
-                  <Insight title={"Insight"} graphType={"ERR"} textLong={"Lorem ipsum"} data={[1, 2, 3, 4, 5]} />
+                  <Insight title={"Insight"} graphType={"ERR"} textLong={"More insights coming soon!"} data={[1, 2, 3, 4, 5]} />
                 </div>
               </div>
             </div>
