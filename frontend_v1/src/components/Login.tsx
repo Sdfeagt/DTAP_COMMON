@@ -20,8 +20,8 @@ const Login = () => {
   };
 
   const handleSubmit = async (event: any) => {
-    setWrongCred(false)
     event.preventDefault();
+    setWrongCred(false)
     try {
       setShowLoad(true)
       await logIn(email, password);

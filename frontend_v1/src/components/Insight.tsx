@@ -1,4 +1,4 @@
-import { Doughnut, Line } from 'react-chartjs-2'; import React from 'react'
+import { Doughnut, Line } from 'react-chartjs-2'; import React, { useState } from 'react'
 import { faker } from '@faker-js/faker';
 
 
@@ -9,6 +9,7 @@ type insight_props = {
     data: number[]
 }
 const Insight = ({ title, graphType, textLong, data }: insight_props) => {
+    const [examples, setExamples] = useState<insight_props[]>()
     const Graph = () => {
         if (graphType === "circle") {
 
