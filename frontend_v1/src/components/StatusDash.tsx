@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react'
 
 import { getDevices } from '../database/firebaseDB'
 import { useAuth } from '../../context/AuthContext';
+import { v4 as uuidv4 } from 'uuid';
+
 
 const DEVICES_STORAGE_KEY = 'devices';
 
 const StatusDash = () => {
   const [devices, setDevices] = useState<any[]>([]);
   const { user } = useAuth();
+
 
   useEffect(() => {
     const loadDevicesFromLocalStorage = () => {
@@ -57,7 +60,7 @@ const StatusDash = () => {
         <div className="flex justify-center items-center font-bold border-l-2">Speed</div>
         <div className="flex justify-center items-center font-bold border-l-2">Hardware</div>
         {data.map(obj => (
-          <React.Fragment key={obj.name}>
+          <React.Fragment key={uuidv4()}>
             <div className="flex justify-center items-center border-2 border-r-0 rounded-l-lg my-2 ">{obj.name}</div>
             {obj.status ? <div className="flex justify-center items-center border-2 my-2 border-r-0">Ok</div> : <div className="flex justify-center items-center border-2 my-2 border-r-0">ERR</div>}
             <div className="flex justify-center items-center border-2 my-2 border-r-0">{obj.speed}</div>
@@ -66,24 +69,24 @@ const StatusDash = () => {
         ))
         }
       </div > :
-        <div className="flex justify-center items-center"><div className="flex justify-center">
+        <div className="absolute left-60 bottom-0"><div className="flex justify-center group relative mr-4">
           <div aria-label="Loading..." role="status">
             <svg className="h-8 w-8 animate-spin stroke-gray-500">
-              <line x1="128" y1="32" x2="128" y2="64" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+              <line x1="128" y1="32" x2="128" y2="64" strokeLinecap="round" strokeLinejoin="round" strokeWidth="24">
               </line>
-              <line x1="195.9" y1="60.1" x2="173.3" y2="82.7" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+              <line x1="195.9" y1="60.1" x2="173.3" y2="82.7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="24">
               </line>
-              <line x1="224" y1="128" x2="192" y2="128" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+              <line x1="224" y1="128" x2="192" y2="128" strokeLinecap="round" strokeLinejoin="round" strokeWidth="24">
               </line>
-              <line x1="195.9" y1="195.9" x2="173.3" y2="173.3" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+              <line x1="195.9" y1="195.9" x2="173.3" y2="173.3" strokeLinecap="round" strokeLinejoin="round" strokeWidth="24">
               </line>
-              <line x1="128" y1="224" x2="128" y2="192" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+              <line x1="128" y1="224" x2="128" y2="192" strokeLinecap="round" strokeLinejoin="round" strokeWidth="24">
               </line>
-              <line x1="60.1" y1="195.9" x2="82.7" y2="173.3" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+              <line x1="60.1" y1="195.9" x2="82.7" y2="173.3" strokeLinecap="round" strokeLinejoin="round" strokeWidth="24">
               </line>
-              <line x1="32" y1="128" x2="64" y2="128" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+              <line x1="32" y1="128" x2="64" y2="128" strokeLinecap="round" strokeLinejoin="round" strokeWidth="24">
               </line>
-              <line x1="60.1" y1="60.1" x2="82.7" y2="82.7" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+              <line x1="60.1" y1="60.1" x2="82.7" y2="82.7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="24">
               </line>
             </svg>
           </div>

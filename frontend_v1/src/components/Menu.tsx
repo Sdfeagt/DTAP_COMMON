@@ -32,9 +32,9 @@ const Menu = ({ onPage }: menu_props) => {
         }
         else {
             console.log("Lmao you did something wrong");
+            console.log(onPage);
         }
     }, [onPage])
-    console.log(cssMenu);
     return (
         <div className='fixed top-0 left-0 h-screen bg-surface border-r border-white  pt-4 group'>
             {cssMenu === 1 ? (<div className="h-full flex flex-col justify-between">

@@ -19,7 +19,7 @@ const settings = () => {
                     <Header info='Dashboard' />
                 </div>
                 <div className="flex ml-10">
-                    <Menu onPage={"settings"} />
+                    <Menu onPage={"Settings"} />
                     <div className="flex flex-col flex-grow mt-24">
                         <div className="">
                             <div className="flex justify-around items-start my-20">

@@ -1,5 +1,7 @@
 import React from "react";
 import { faker } from '@faker-js/faker';
+import { v4 as uuidv4 } from 'uuid';
+
 
 interface RGB {
   red: number;
@@ -65,7 +67,7 @@ const HeatMap = () => {
 
   const cols = (cells: Cell[]): JSX.Element[] => {
     return cells.map((cell, i) => (
-      <div key={i} className={`flex items-center justify-center bg-primary`}
+      <div key={uuidv4()} className={`flex items-center justify-center bg-primary`}
         style={{ opacity: `${cell.scales[0] / 100}` }}>
         <div
           className={`h-4 w-4 flex`}
@@ -83,7 +85,7 @@ const HeatMap = () => {
       </div>
       <div className="pt-4">
         {data.map((row: Row) => (
-          <div key={row.label} className="flex flex-wrap">
+          <div key={uuidv4()} className="flex flex-wrap">
             <div className="text-xs px-2 w-1/5 md:w-auto">{row.label}</div>
             {cols(row.cells)}
           </div>
