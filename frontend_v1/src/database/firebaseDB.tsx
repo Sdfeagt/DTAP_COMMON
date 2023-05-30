@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, Firestore } from 'firebase/firestore/lite';
+import { getFirestore, collection, getDocs, deleteDoc, doc, setDoc, Firestore } from 'firebase/firestore/lite';
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
@@ -28,7 +28,34 @@ async function getUsers() {
     return usersList;
 }
 
+async function getIDs() {
+    const IDs = collection(db, 'device_IDs');
+    const IDSnapshot = await getDocs(IDs);
+    const IDList = IDSnapshot.docs.map(doc => doc.data());
+    return IDList;
+}
+
+async function getHeatMaps() {
+    const heatmaps = collection(db, 'heatmaps');
+    const heatmapSnapshot = await getDocs(heatmaps);
+    const heatmapList = heatmapSnapshot.docs.map(doc => doc.data());
+    return heatmapList;
+
+}
+
+
 const auth = getAuth();
 
+async function deleteDocument(collection: string, document: string) {
+    await deleteDoc(doc(db, collection, document));
+}
 
-export { getDevices, getUsers, auth }
+async function addDocument(collection: string, ID: string, document: any) {
+    console.log(document);
+    const docRef = doc(db, collection, ID);
+    await setDoc(docRef, document);
+}
+
+
+
+export { getDevices, getUsers, auth, getIDs, deleteDocument, addDocument, getHeatMaps }

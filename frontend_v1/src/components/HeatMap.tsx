@@ -1,5 +1,8 @@
-import React from "react";
-import { faker } from '@faker-js/faker';
+import React, { useEffect, useState } from "react";
+import { useAuth } from "../../context/AuthContext";
+import { getHeatMaps } from "@/database/firebaseDB";
+import { v4 as uuidv4 } from 'uuid';
+
 
 interface RGB {
   red: number;
@@ -18,81 +21,108 @@ interface Row {
 }
 
 const HeatMap = () => {
-  //const headings = ["Lon_1", "Lon_2", "Lon_3", "Lon_4", "Lon_5", "Lon_6", "Lon_7", "Lon_8", "Lon_9", "Lon_10", "Lon_11", "Lon_12", "Lon_13", "Lon_14", "Lon_15", "Lon_16", "Lon_17", "Lon_18", "Lon_19", "Lon_20"];
-  const labels = ["Lat_1", "Lat_2", "Lat_3", "Lat_4", "Lat_5", "Lat_6", "Lat_7", "Lat_8", "Lat_9", "Lat_10", "Lat_11", "Lat_12", "Lat_13", "Lat_14", "Lat_15", "Lat_16", "Lat_17", "Lat_18", "Lat_19", "Lat_20"];
+  const [heatmapData, setHeatmapdata] = useState<any>()
+  const { user } = useAuth();
 
-
-  const values = Array.from({ length: 25 }, () =>
-    Array.from({ length: 25 }, () => faker.number.int({ min: 0, max: 99 }))
-  ); // FIXME: this causes an error, but as it is just junk data, I'll ignore it
-
-  const data: Row[] = labels.map((label, i) => {
-    const cells: Cell[] = values[i].map((scale, j) => {
-      const colors: RGB = {
-        red: 0,
-        green: 0,
-        blue: 0
-      };
-      const bgColor = scale === 0 ? 'rgba(0,0,0,0.2)' : '';
-
-      if (scale < 5) {
-        colors.red = 1;
-        colors.green = 1 - ((5 - scale) / 5);
-      } else if (scale === 100) {
-        colors.red = 0xB6;
-        colors.green = 0x60;
-        colors.blue = 0x12;
-      } else {
-        colors.red = 1 - ((scale - 5) / 5);
-        colors.green = 1;
+  useEffect(() => {
+    const getInfo = async () => {
+      try {
+        const data = await getHeatMaps()
+        setHeatmapdata(data.find((rawData: any) => (rawData.owner === user.email)))
+      } catch (error: any) {
+        console.log(error.message);
       }
+    }
+    const interval = setInterval(() => {
+      getInfo()
+    }, 1000)
+    return () => clearInterval(interval)
+  })
+  if (heatmapData != undefined) {
+    const data: Row[] = Object.values(heatmapData.data).map((val: any, i: any) => {
+      const cells: Cell[] = heatmapData.data[i].map((data_point: any) => {
+        const colors: RGB = {
+          red: 0,
+          green: 0,
+          blue: 0
+        };
+        const bgColor = data_point === 0 ? 'rgba(0,0,0,0.2)' : '';
+
+        if (data_point < 5) {
+          colors.red = 1;
+          colors.green = 1 - ((5 - data_point) / 5);
+        } else if (data_point === 100) {
+          colors.red = 0xB6;
+          colors.green = 0x60;
+          colors.blue = 0x12;
+        } else {
+          colors.red = 1 - ((data_point - 5) / 5);
+          colors.green = 1;
+        }
+
+        return {
+          scales: [data_point],
+          colors: colors,
+          bgColor: bgColor,
+        };
+      });
 
       return {
-        scales: [scale],
-        colors: colors,
-        bgColor: bgColor,
+        label: "",
+        cells: cells
       };
     });
 
-    return {
-      label: "",
-      cells: cells
-    };
-  });
-
-
-  //const titles = headings.map((heading) => <th key={heading}>{heading}</th>);
-
-  const cols = (cells: Cell[]): JSX.Element[] => {
-    return cells.map((cell, i) => (
-      <div key={i} className={`flex items-center justify-center bg-primary`}
-        style={{ opacity: `${cell.scales[0] / 100}` }}>
-        <div
-          className={`h-4 w-4 flex`}
-        >
-          {/* <div className="flex text-xs place-self-center">{cell.scales[0].toFixed(0)}</div> */}
-        </div>
-      </div >
-    ));
-  };
-
-  return (
-    <div className="px-4 pb-4 bg-surface rounded-2xl shadow-md border-2 border-primary">
-      <div className="flex flex-row space-x-4 text-xl">
-        Heat map
-      </div>
-      <div className="pt-4">
-        {data.map((row: Row) => (
-          <div key={row.label} className="flex flex-wrap">
-            <div className="text-xs px-2 w-1/5 md:w-auto">{row.label}</div>
-            {cols(row.cells)}
+    const cols = (cells: Cell[]): JSX.Element[] => {
+      return cells.map((cell, i) => (
+        <div key={uuidv4()} className={`flex items-center justify-center bg-primary`}
+          style={{ opacity: `${cell.scales[0] / 100}` }}>
+          <div
+            className='h-4 w-4 flex'
+          >
+            <div className="flex text-xs place-self-center">{cell.scales[0].toFixed(0)}</div>
           </div>
-        ))}
+        </div >
+      ));
+    };
+
+    return (
+      <div className="px-4 pb-4 bg-surface rounded-2xl shadow-md border-2 border-primary h-[475px] w-[475px]">
+        <div className="flex flex-row space-x-4 text-xl">
+          Heat map
+        </div>
+        <div className="pt-4">
+          {data.map((row: Row) => (
+            <div key={uuidv4()} className="flex flex-wrap">
+              <div className="text-xs px-2 w-1/5 md:w-auto">{row.label}</div>
+              {cols(row.cells)}
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
-  );
+    );
+
+  }
+  else {
+    return (
+      <div className="px-4 pb-4 bg-surface rounded-2xl shadow-md border-2 border-primary h-[475px] w-[475px] flex flex-col justify-center items-center">
+        <div className="flex flex-row space-x-4 text-xl">
+          Heat map
+        </div>
+        <div className="flex justify-center items-center flex-grow">
+          <div aria-label="Loading..." role="status">
+            <svg className="h-6 w-6 animate-spin" viewBox="3 3 18 18">
+              <path className="fill-gray-200" d="M12 5C8.13401 5 5 8.13401 5 12c0 3.866 3.13401 7 7 7 3.866.0 7-3.134 7-7 0-3.86599-3.134-7-7-7zM3 12c0-4.97056 4.02944-9 9-9 4.9706.0 9 4.02944 9 9 0 4.9706-4.0294 9-9 9-4.97056.0-9-4.0294-9-9z"></path>
+              <path className="fill-primary" d="M16.9497 7.05015c-2.7336-2.73367-7.16578-2.73367-9.89945.0-.39052.39052-1.02369.39052-1.41421.0-.39053-.39053-.39053-1.02369.0-1.41422 3.51472-3.51472 9.21316-3.51472 12.72796.0C18.7545 6.02646 18.7545 6.65962 18.364 7.05015c-.390599999999999.39052-1.0237.39052-1.4143.0z"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    );
 
 
+
+  }
 
 };
 
