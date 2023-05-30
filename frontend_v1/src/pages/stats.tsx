@@ -12,7 +12,7 @@ const stats = () => {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <div className="fixed top-0 left-0 right-0 z-10 bg-background">
+            <div className="fixed top-0 left-0 right-0 z-30 bg-background">
                 <Header info='Statistics' />
             </div>
             <div className="flex ml-10">

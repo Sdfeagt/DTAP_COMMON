@@ -35,6 +35,15 @@ async function getIDs() {
     return IDList;
 }
 
+async function getHeatMaps() {
+    const heatmaps = collection(db, 'heatmaps');
+    const heatmapSnapshot = await getDocs(heatmaps);
+    const heatmapList = heatmapSnapshot.docs.map(doc => doc.data());
+    return heatmapList;
+
+}
+
+
 const auth = getAuth();
 
 async function deleteDocument(collection: string, document: string) {
@@ -49,4 +58,4 @@ async function addDocument(collection: string, ID: string, document: any) {
 
 
 
-export { getDevices, getUsers, auth, getIDs, deleteDocument, addDocument }
+export { getDevices, getUsers, auth, getIDs, deleteDocument, addDocument, getHeatMaps }

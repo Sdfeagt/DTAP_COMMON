@@ -12,9 +12,8 @@ const ChartDash = () => {
   const { user } = useAuth();
 
   const [devices, setDevices] = useState<any[]>([])
+  const [chartData, setChartData] = useState<any>()
   useEffect(() => {
-
-
     const getInfo = async () => {
       try {
         const data = await getDevices()
@@ -24,30 +23,29 @@ const ChartDash = () => {
       }
     }
 
-
+    setChartData({
+      labels: devices.filter((device: any) => (device.name != "heatmap" && device.owner === user.email)).map((device: any) => (device.name)),
+      datasets: [
+        {
+          label: '# Connection speed',
+          data: devices.filter((device: any) => (device.name != "heatmap")).map((device: any) => (device.speed)),
+          backgroundColor: devices.filter((device: any) => (device.name != "heatmap")).map((device: any) => ('rgba(182, 96, 18)'))
+        },
+      ],
+    })
     const interval = setInterval(() => {
       getInfo()
     }, 1000)
     return () => clearInterval(interval)
-  })
+  }, [devices, user.email])
 
-  const data = {
-    labels: devices.filter((device: any) => (device.name != "heatmap" && device.owner === user.email)).map((device: any) => (device.name)),
-    datasets: [
-      {
-        label: '# Connection speed',
-        data: devices.filter((device: any) => (device.name != "heatmap")).map((device: any) => (device.speed)),
-        backgroundColor: devices.filter((device: any) => (device.name != "heatmap")).map((device: any) => ('rgba(182, 96, 18)'))
-      },
-    ],
-  };
 
   return (
     <div className='h-[300px] w-[600px] flex justify-center items-stretch '>
       {
         devices.length != 0 ? <div>
           <Bar
-            data={data}
+            data={chartData}
             width={600}
             height={300}
             options={{
@@ -94,7 +92,7 @@ const ChartDash = () => {
             }}
           />
         </div > :
-          <div className="absolute left-60 bottom-0"><div className="flex justify-center group relative mr-4">
+          <div className="flex justify-center items-center"><div className="flex justify-center">
             <div aria-label="Loading..." role="status">
               <svg className="h-8 w-8 animate-spin stroke-gray-500">
                 <line x1="128" y1="32" x2="128" y2="64" strokeLinecap="round" strokeLinejoin="round" strokeWidth="24">

@@ -145,7 +145,7 @@ const Register = () => {
         {diffpassword ? <div className="flex justify-center text-sm text-red bg-surface_err border rounded-2xl shadow-md"> <p className="my-1">Passwords are not the same!</p></div> : <div></div>}
         <div className="flex flex-col justify-end group relative">
           <div className="flex justify-end underline">What&apos;s robot ID number?</div>
-          <div className="hidden justify-end group-hover:block absolute top-10 left-0 border rounded-2xl shadow-md p-2 text-sm">You can find the ID number at the back of the device.</div>
+          <div className="hidden justify-end group-hover:block bottom-10 left-0 border rounded-2xl shadow-md p-2 text-sm absolute">You can find the ID number at the back of the device.</div>
         </div>
       </form>
     </div>

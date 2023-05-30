@@ -36,7 +36,7 @@ const Menu = ({ onPage }: menu_props) => {
         }
     }, [onPage])
     return (
-        <div className='fixed top-0 left-0 h-screen bg-surface border-r border-white  pt-4 group'>
+        <div className='fixed top-0 left-0 h-screen bg-surface border-r border-white  pt-4 group z-20'>
             {cssMenu === 1 ? (<div className="h-full flex flex-col justify-between">
                 <div className="pt-28">
                     <div className="flex items-center bg-primary rounded-full m-2 group-hover:rounded-l-lg cursor-pointer transition-all duration-300" onClick={() => { router.push("/dashboard") }}>
