@@ -80,7 +80,6 @@ const HeatMap = () => {
           <div
             className='h-4 w-4 flex'
           >
-            <div className="flex text-xs place-self-center">{cell.scales[0].toFixed(0)}</div>
           </div>
         </div >
       ));
