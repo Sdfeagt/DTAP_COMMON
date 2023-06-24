@@ -1,4 +1,7 @@
-# Team 2 - S.C.A.N. (signal and connection analyzer)
+# S.C.A.N. (signal and connection analyzer)
+This is a repository houses the code used for creating the S.C.A.N. project. The project itself was created as a part of Design Thinking and Advanced Prototyping (DTAP) course at Aalto University.
+Information transcribed below showcases the design concept and 4 specializations of the project.
+
 Team members: Beatriz Glaser, Kabir Bissessar, Mimi Määttä, Rafal Ciechanski
 
 ## The purpose / unique value of the design concept
